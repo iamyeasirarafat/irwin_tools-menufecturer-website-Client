@@ -3,6 +3,7 @@ import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-fireba
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import auth from '../../firebase/firebase.init';
+import Loading from '../shared/Loading/Loading';
 
 
 const Login = () => {
@@ -12,7 +13,7 @@ const Login = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
     if( gLoading || loading){
-        return <p>Loading...</p>;
+        return <Loading></Loading>
     }
     if(gUser || user){
         navigate(from, { replace: true });

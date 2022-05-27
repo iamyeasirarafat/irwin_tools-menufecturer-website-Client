@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 
 import auth from '../../firebase/firebase.init';
+import Loading from '../shared/Loading/Loading';
 
 const Register = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -10,7 +11,7 @@ const Register = () => {
     const [updateProfile, updating, uError] = useUpdateProfile(auth);
     const navigate = useNavigate()
     if( gLoading || loading || updating){
-        return <p>loading....</p>
+        return <Loading></Loading>
     }
     if(gUser || user){
         navigate('/')
@@ -35,7 +36,7 @@ const Register = () => {
                         <h1 class="text-5xl font-bold">Register now!</h1>
                         <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                     </div>
-                    <div class="card flex-shrink-0 bg-gray-900 text-gray-100 w-full max-w-sm shadow-2xl bg-base-100">
+                    <div class="card flex-shrink-0 bg-gray-900 text-gray-100 w-full max-w-sm shadow-2xl">
                         <div class="card-body">
                             <h2 class="text-2xl font-semibold text-center">Register</h2>
                             <form onSubmit={handeRegister}>
