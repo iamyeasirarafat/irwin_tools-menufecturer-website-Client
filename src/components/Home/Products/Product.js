@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Product = ({ product }) => {
-    const {name, img, description, min,max, price} = product;
+    const navigate = useNavigate()
+    const {_id,name, img, description, min,max, price} = product;
     return (
         <div>
             <div className="max-w-xs p-6 rounded-md shadow-md bg-gray-900 text-gray-50">
@@ -14,7 +16,7 @@ const Product = ({ product }) => {
                 <p className="text-gray-100 mt-4">{min} Pcs Minimum</p>
                 <p className="text-gray-100 mt-2">{max} Pcs Maximum</p>
                 <p className="text-gray-100 mt-2 font-semibold">Price : ${price}/pcs</p>
-                <button type="button" className="flex mt-4 items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-violet-400 text-gray-900">Proceed</button>
+                <button onClick={()=>navigate(`/purchase/${_id}`)} type="button" className="flex mt-4 items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-violet-400 text-gray-900">Proceed</button>
 
             </div>
         </div>
