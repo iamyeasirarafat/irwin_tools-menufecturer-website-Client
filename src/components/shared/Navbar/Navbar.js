@@ -1,7 +1,12 @@
 import React from 'react';
+import {signOut} from 'firebase/auth'
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../../firebase/firebase.init';
 
 const Navbar = () => {
+    const [user, loading,] = useAuthState(auth);
+    
     return (
       <div className="bg-gray-900 py-1">
            <div className="w-11/12  mx-auto">
@@ -46,7 +51,10 @@ const Navbar = () => {
                 </ul>
             </div>
             <div class="navbar-end">
-                <a class="btn">Log In</a>
+                {user ? <button onClick={() =>{
+                    localStorage.removeItem('jwtToken')
+                    signOut(auth);
+                }} className='btn'>Sign Out</button> : <Link to='/login' class="btn">Log In</Link>}
             </div>
         </div>
        </div>

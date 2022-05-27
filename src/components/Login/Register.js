@@ -4,18 +4,21 @@ import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfil
 
 import auth from '../../firebase/firebase.init';
 import Loading from '../shared/Loading/Loading';
+import useToken from '../../hooks/useToken';
 
 const Register = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [createUserWithEmailAndPassword, user, loading, error,] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile, updating, uError] = useUpdateProfile(auth);
     const navigate = useNavigate()
+    const [token] = useToken(gUser || user)
     if( gLoading || loading || updating){
         return <Loading></Loading>
     }
-    if(gUser || user){
+    if(token){
         navigate('/')
     }
+    console.log(gUser);
     const handeRegister = async (e) => {
         e.preventDefault()
         const name = e.target.name.value;
