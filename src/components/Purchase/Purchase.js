@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useNavigate, useParams } from 'react-router-dom';
 import auth from '../../firebase/firebase.init';
 import Loading from '../shared/Loading/Loading';
 
 const Purchase = () => {
     const { id } = useParams();
+    const navigate = useNavigate()
     const [client, setClient] = useState(false)
     const [product, setProduct] = useState({});
     const [totalPrice, setTotalPrice] = useState(1);
@@ -36,7 +38,10 @@ const Purchase = () => {
         })
             .then(response => response.json())
             .then(data => {
-                console.log('Success:', data);
+                if(data.insertedId){
+                  toast.success('Successfully Orderd');
+                    navigate('/dashboard')
+                }
             })
     }
     const min = product?.min;
