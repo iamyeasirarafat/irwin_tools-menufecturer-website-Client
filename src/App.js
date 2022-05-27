@@ -4,6 +4,7 @@ import './App.css';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import Register from './components/Login/Register';
+import Footer from './components/shared/Footer/Footer';
 import Navbar from './components/shared/Navbar/Navbar';
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
         <Route path="login" element={<Login></Login>}></Route>
         <Route path="register" element={<Register></Register>}></Route>
       </Routes>
-      
+      <Footer/>
     </div>
   );
 }
