@@ -13,6 +13,7 @@ import { Toaster } from 'react-hot-toast';
 import Dashboard from './components/Dashboard/Dashboard';
 import OrderSummary from './components/Dashboard/OrderSummary';
 import AddReview from './components/Dashboard/AddReview';
+import MyProfile from './components/Dashboard/MyProfile';
 function App() {
   return (
     <div className="bg-gray-800 text-gray-100" >
@@ -26,6 +27,7 @@ function App() {
         <Route path='dashboard' element={<ProtectedRoute><Dashboard></Dashboard></ProtectedRoute>}>
           <Route index element={<OrderSummary/>}></Route>
           <Route path='review' element={<AddReview></AddReview>}></Route>
+          <Route path='profile' element={<MyProfile></MyProfile>}></Route>
         </Route>
         <Route path='*' element={<PageNotFound/>}></Route>
       </Routes>
