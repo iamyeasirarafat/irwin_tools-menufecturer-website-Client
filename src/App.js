@@ -19,6 +19,7 @@ import MakeAdmin from './components/Dashboard/MakeAdmin';
 import AddProduct from './components/Dashboard/AddProduct';
 import ManageAllProduct from './components/Dashboard/ManageAllProduct';
 import Blogs from './components/Blogs/Blogs';
+import MyPOrtfolio from './components/MyPortfolio/MyPOrtfolio';
 function App() {
   return (
     <div className="bg-gray-800 text-gray-100" >
@@ -27,6 +28,7 @@ function App() {
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="home" element={<Home></Home>}></Route>
         <Route path="blogs" element={<Blogs></Blogs>}></Route>
+        <Route path="portfolio" element={<MyPOrtfolio></MyPOrtfolio>}></Route>
         <Route path="login" element={<Login></Login>}></Route>
         <Route path="register" element={<Register></Register>}></Route>
         <Route path='purchase/:id' element={<ProtectedRoute><Purchase/></ProtectedRoute>}></Route>
