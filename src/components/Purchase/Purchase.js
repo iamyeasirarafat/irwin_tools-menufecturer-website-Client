@@ -14,7 +14,7 @@ const Purchase = () => {
     const [totalPrice, setTotalPrice] = useState(1);
     const [user, loading,] = useAuthState(auth);
     useEffect(() => {
-        fetch(`http://localhost:5000/product/${id}`, {
+        fetch(`https://blooming-woodland-85127.herokuapp.com/product/${id}`, {
             method: 'GET',
             headers: { 'authorization': `Bearer ${localStorage.getItem('jwtToken')}` }
         }).then(response => response.json())
@@ -28,7 +28,7 @@ const Purchase = () => {
         const quantity = data.quantity;
         setTotalPrice(product?.price * quantity);
         const order = { name: product?.name, quantity: quantity, price: product?.price * quantity, client: user?.displayName, clientEmail: user?.email }
-        fetch('http://localhost:5000/orders', {
+        fetch('https://blooming-woodland-85127.herokuapp.com/orders', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -38,8 +38,8 @@ const Purchase = () => {
         })
             .then(response => response.json())
             .then(data => {
-                if(data.insertedId){
-                  toast.success('Successfully Orderd');
+                if (data.insertedId) {
+                    toast.success('Successfully Orderd');
                     navigate('/dashboard')
                 }
             })

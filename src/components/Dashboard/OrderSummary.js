@@ -4,13 +4,13 @@ import OrderSummaryRow from './OrderSummaryRow';
 const OrderSummary = () => {
     const [orders, setOrders] = useState([])
     useEffect(() => {
-        fetch(`http://localhost:5000/orders`, {
+        fetch(`https://blooming-woodland-85127.herokuapp.com/orders`, {
             method: 'GET',
             headers: { 'authorization': `Bearer ${localStorage.getItem('jwtToken')}` }
         }).then(response => response.json())
             .then(data => setOrders(data))
     }, [orders]);
-  
+
     return (
         <div className="text-gray-100">
             <h3 className="text-4xl my-14 font-semibold">Your Order <span className="text-violet-400">Summary</span></h3>
@@ -46,7 +46,7 @@ const OrderSummary = () => {
                     </div>
                 </div>
             </div>
-           
+
         </div >
     );
 };
