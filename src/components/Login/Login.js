@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import auth from '../../firebase/firebase.init';
@@ -19,13 +20,18 @@ const Login = () => {
     }
     if(token){
         navigate(from, { replace: true });
+        toast.success('successfully logged in',{id:'success'})
+    }
+    if(error || gError){
+        {error && toast.error(error?.message,{id:'error'})}
+        {gError && toast.error(gError?.message,{id:'gerror'})}
     }
     const handleLogin = async (e)=>{
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
        await signInWithEmailAndPassword(email, password);
-       alert('Logged in successfully')
+       
     }
     return (
         <div>

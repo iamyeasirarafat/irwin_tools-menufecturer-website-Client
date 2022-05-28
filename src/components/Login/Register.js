@@ -1,24 +1,32 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 
 import auth from '../../firebase/firebase.init';
 import Loading from '../shared/Loading/Loading';
 import useToken from '../../hooks/useToken';
+import toast from 'react-hot-toast';
 
 const Register = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [createUserWithEmailAndPassword, user, loading, error,] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile, updating, uError] = useUpdateProfile(auth);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     const [token] = useToken(gUser || user)
     if( gLoading || loading || updating){
         return <Loading></Loading>
     }
     if(token){
-        navigate('/')
+        navigate(from, { replace: true });
+        toast.success('successfully logged in',{id:'success'})
     }
-    console.log(gUser);
+    if(error || gError){
+        {error && toast.error(error?.message,{id:'error'})}
+        {gError && toast.error(gError?.message,{id:'gerror'})}
+    }
+    
     const handeRegister = async (e) => {
         e.preventDefault()
         const name = e.target.name.value;
