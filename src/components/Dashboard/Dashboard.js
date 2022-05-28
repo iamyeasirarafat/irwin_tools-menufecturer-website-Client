@@ -17,7 +17,7 @@ const Dashboard = () => {
                     <NavLink style={({isActive}) => { return {borderColor: isActive ? 'violet' : 'gray'}}}  to="/dashboard/manage" className="flex items-center flex-shrink-0 px-5 py-2 border-b-4 text-gray-400">Manage All Orders</NavLink>
                     <NavLink style={({isActive}) => { return {borderColor: isActive ? 'violet' : 'gray'}}}  to="/dashboard/addProduct" className="flex items-center flex-shrink-0 px-5 py-2 border-b-4 text-gray-400">Add A Product</NavLink>
                     <NavLink style={({isActive}) => { return {borderColor: isActive ? 'violet' : 'gray'}}}  to="/dashboard/makeAdmin" className="flex items-center flex-shrink-0 px-5 py-2 border-b-4 text-gray-400">Make Admin</NavLink>
-                    <NavLink style={({isActive}) => { return {borderColor: isActive ? 'violet' : 'gray'}}}  to="/dashboard/profile" className="flex items-center flex-shrink-0 px-5 py-2 border-b-4 text-gray-400">Manage Products</NavLink>
+                    <NavLink style={({isActive}) => { return {borderColor: isActive ? 'violet' : 'gray'}}}  to="/dashboard/manageProduct" className="flex items-center flex-shrink-0 px-5 py-2 border-b-4 text-gray-400">Manage Products</NavLink>
                     </> : <><NavLink style={({isActive}) => { return {borderColor: isActive ? 'violet' : 'gray'}}}  to="/dashboard" className="flex items-center flex-shrink-0 px-5 py-2 border-b-4 text-gray-400">My Orders</NavLink>
                     <NavLink style={({isActive}) => { return {borderColor: isActive ? 'violet' : 'gray'}}}  to="/dashboard/review" className="flex items-center flex-shrink-0 px-5 py-2 border-b-4 text-gray-50">Add a Review</NavLink></>
                 }

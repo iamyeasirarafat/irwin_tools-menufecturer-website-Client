@@ -17,7 +17,7 @@ const MakeAdmin = () => {
             <h3 className="text-4xl my-14 font-semibold">All <span className="text-violet-400">Users</span></h3>
             <div className="">
                 <div className="container p-2 mx-auto sm:p-4 text-gray-100">
-                    <h2 className="mb-4 text-2xl font-semibold leading-tight">Invoices</h2>
+                    
                     <div className="overflow-x-auto">
                         <table className="min-w-full text-xs">
                             <colgroup>

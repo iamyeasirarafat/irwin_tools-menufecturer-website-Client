@@ -17,6 +17,7 @@ import MyProfile from './components/Dashboard/MyProfile';
 import ManageAllOrders from './components/Dashboard/ManageAllOrders';
 import MakeAdmin from './components/Dashboard/MakeAdmin';
 import AddProduct from './components/Dashboard/AddProduct';
+import ManageAllProduct from './components/Dashboard/ManageAllProduct';
 function App() {
   return (
     <div className="bg-gray-800 text-gray-100" >
@@ -34,6 +35,7 @@ function App() {
           <Route path='manage' element={<ManageAllOrders/>}></Route>
           <Route path='makeAdmin' element={<MakeAdmin/>}></Route>
           <Route path='addProduct' element={<AddProduct/>}></Route>
+          <Route path='manageProduct' element={<ManageAllProduct/>}></Route>
         </Route>
         <Route path='*' element={<PageNotFound/>}></Route>
       </Routes>
