@@ -1,66 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Reviews = () => {
+    const [reviews, setreviews] = useState([])
+    useEffect(() => {
+        fetch('http://localhost:5000/reviews',{
+            method: 'GET',
+            headers:{'authorization': `Bearer ${localStorage.getItem('jwtToken')}`,}
+        }).then(response => response.json())
+        .then(data=>setreviews(data))
+    },[])
     return (
         <div>
-          <h2 className="text-center text-5xl font-semibold my-14">Customers Review</h2>
-            <section className="bg-gray-800 text-gray-100">
-                <div className="container px-6 py-12 mx-auto">
-                    <div className="grid items-center gap-4 xl:grid-cols-5">
-                        <div className="max-w-2xl mx-auto my-8 space-y-4 text-center xl:col-span-2 xl:text-left">
-                            <h2 className="text-4xl font-bold">Duo assum utroque appetere an</h2>
-                            <p className="text-gray-400">Pri ex magna scaevola moderatius. Nullam accommodare no vix, est ei diceret alienum, et sit cetero malorum. Et sea iudico consequat, est sanctus adipisci ex.</p>
-                        </div>
-                        <div className="p-6 xl:col-span-3">
-                            <div className="grid gap-4 md:grid-cols-2">
-                                <div className="grid content-center gap-4">
-                                    <div className="p-6 rounded shadow-md bg-gray-900">
-                                        <p>An audire commodo habemus cum. Ne sed corrumpit repudiandae. Tota aliquip democritum pro in, nec democritum intellegam ne. Propriae volutpat dissentiet ea sit, nec at lorem inani tritani, an ius populo perfecto vituperatoribus. Eu cum case modus salutandi, ut eum vocent sensibus reprehendunt.</p>
-                                        <div className="flex items-center mt-4 space-x-4">
-                                            <img src="https://source.unsplash.com/50x50/?portrait?1" alt="" className="w-12 h-12 bg-center bg-cover rounded-full bg-gray-500" />
-                                            <div>
-                                                <p className="text-lg font-semibold">Leroy Jenkins</p>
-                                                <p className="text-sm text-gray-400">CTO of Company Co.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="p-6 rounded shadow-md bg-gray-900">
-                                        <p>Sit wisi sapientem ut, pri civibus temporibus voluptatibus et, ius cu hinc fabulas. Nam meliore minimum et, regione convenire cum id. Ex pro eros mucius consectetuer, pro magna nulla nonumy ne, eam putent iudicabit consulatu cu.</p>
-                                        <div className="flex items-center mt-4 space-x-4">
-                                            <img src="https://source.unsplash.com/50x50/?portrait?2" alt="" className="w-12 h-12 bg-center bg-cover rounded-full bg-gray-500" />
-                                            <div>
-                                                <p className="text-lg font-semibold">Leroy Jenkins</p>
-                                                <p className="text-sm text-gray-400">CTO of Company Co.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="grid content-center gap-4">
-                                    <div className="p-6 rounded shadow-md bg-gray-900">
-                                        <p>Putant omnium elaboraret per ut. Id dicta tritani nominavi quo, mea id justo errem elaboraret. Agam mollis scripserit ea his, ut nec postea verear persecuti. Ea noster senserit eam, ferri omittantur ei nec. Id mel solet libris efficiantur, commune explicari et eos. Case movet ad est, sed tota vocent appetere ea.</p>
-                                        <div className="flex items-center mt-4 space-x-4">
-                                            <img src="https://source.unsplash.com/50x50/?portrait?3" alt="" className="w-12 h-12 bg-center bg-cover rounded-full bg-gray-500" />
-                                            <div>
-                                                <p className="text-lg font-semibold">Leroy Jenkins</p>
-                                                <p className="text-sm text-gray-400">CTO of Company Co.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="p-6 rounded shadow-md bg-gray-900">
-                                        <p>Te omnes virtute volutpat sed. Ei esse eros interesset vel, ei populo denique ocurreret vix, eu cum pertinax mandamus vituperatoribus. Solum nihil luptatum per ex, ei amet viderer eos. Ea illum labitur mnesarchum pro. Eius meis salutandi ei nam, alterum expetenda et nec. Expetenda intellegat at eum, per mazim sanctus honestatis ad. Ei noluisse invenire vix. Te ancillae patrioque qui, probo bonorum vivendum ex vim.</p>
-                                        <div className="flex items-center mt-4 space-x-4">
-                                            <img src="https://source.unsplash.com/50x50/?portrait?4" alt="" className="w-12 h-12 bg-center bg-cover rounded-full bg-gray-500" />
-                                            <div>
-                                                <p className="text-lg font-semibold">Leroy Jenkins</p>
-                                                <p className="text-sm text-gray-400">CTO of Company Co.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+            <h2 className="text-center text-5xl font-semibold my-14">Customers Review</h2>
+            <section className="bg-gray-800 grid lg:grid-cols-3 mb-20 text-gray-100">
+                {
+                    reviews.map(review =><div key={review._id} className="container mb-8 flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700 bg-gray-900 text-gray-100">
+                    <div className="flex justify-between p-4">
+                        <div className="flex space-x-4">
+                            <div>
+                                <img src="https://source.unsplash.com/100x100/?portrait" alt="" className="object-cover w-12 h-12 rounded-full bg-gray-500" />
+                            </div>
+                            <div className='grid items-center'>
+                                <h4 className="font-bold">{review?.name}</h4>
+                                
                             </div>
                         </div>
+                        <div className="flex items-center space-x-2 text-yellow-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-5 h-5 fill-current">
+                                <path d="M494,198.671a40.536,40.536,0,0,0-32.174-27.592L345.917,152.242,292.185,47.828a40.7,40.7,0,0,0-72.37,0L166.083,152.242,50.176,171.079a40.7,40.7,0,0,0-22.364,68.827l82.7,83.368-17.9,116.055a40.672,40.672,0,0,0,58.548,42.538L256,428.977l104.843,52.89a40.69,40.69,0,0,0,58.548-42.538l-17.9-116.055,82.7-83.368A40.538,40.538,0,0,0,494,198.671Zm-32.53,18.7L367.4,312.2l20.364,132.01a8.671,8.671,0,0,1-12.509,9.088L256,393.136,136.744,453.3a8.671,8.671,0,0,1-12.509-9.088L144.6,312.2,50.531,217.37a8.7,8.7,0,0,1,4.778-14.706L187.15,181.238,248.269,62.471a8.694,8.694,0,0,1,15.462,0L324.85,181.238l131.841,21.426A8.7,8.7,0,0,1,461.469,217.37Z"></path>
+                            </svg>
+                            <span className="text-xl font-bold">{review.ratings}</span>
+                        </div>
                     </div>
-                </div>
+                    <div className="p-4 space-y-2 text-sm text-gray-400">
+                        {review.message}
+                    </div>
+                </div>)
+                }
             </section>
         </div>
     );
